@@ -1,6 +1,7 @@
 // importamos libreriass 
 const express  = require('express');
 const mongoose = require('mongoose');
+const cors     = require('cors');
 
 // importamos el router que creamos para la api
 const router = require('./routes/api/user');
@@ -23,6 +24,7 @@ mongoose
 
 // usamos el router
 app.use('/api', router);
+app.use(cors());
 
 // el server escucha todo
 app.listen(port, () => {
