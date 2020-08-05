@@ -10,10 +10,8 @@ const router = require('./routes/api/user');
 const port = process.env.PORT        || 3000;
 const db   = process.env.MONGODB_URI || 'mongodb://localhost/hellodb';
 
-const app = express();
-// usamos el router
-app.use('/api', router);
 app.use(cors());
+const app = express();
 
 // conexion a la base de datos
 mongoose.set('useUnifiedTopology', true);
@@ -25,6 +23,8 @@ mongoose
   })
 .catch(err => console.error(`Connection error ${err}`));
 
+// usamos el router
+app.use('/api', router);
 
 // el server escucha todo
 app.listen(port, () => {
