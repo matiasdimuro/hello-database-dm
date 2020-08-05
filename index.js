@@ -1,4 +1,4 @@
-// importamos libreriass 
+// importamos libreriass
 const express  = require('express');
 const mongoose = require('mongoose');
 const cors     = require('cors');
@@ -11,6 +11,9 @@ const port = process.env.PORT        || 3000;
 const db   = process.env.MONGODB_URI || 'mongodb://localhost/hellodb';
 
 const app = express();
+// usamos el router
+app.use('/api', router);
+app.use(cors());
 
 // conexion a la base de datos
 mongoose.set('useUnifiedTopology', true);
@@ -22,11 +25,8 @@ mongoose
   })
 .catch(err => console.error(`Connection error ${err}`));
 
-// usamos el router
-app.use('/api', router);
-app.use(cors());
 
 // el server escucha todo
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
-}); 
+});
